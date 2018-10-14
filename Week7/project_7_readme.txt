@@ -11,7 +11,7 @@ Time spent: **X** hours spent in total
     - Vulnerability types: XSS
     - Tested in version: 4.2
     - Fixed in version: 4.2.15
-  - [ ] GIF Walkthrough: 
+  - [ ] GIF Walkthrough: https://github.com/smr1234/WebApplicationSecurity/blob/master/Week7/LargeFileXSS.gif
   - [ ] Steps to recreate: 
 		1. Create a file over the maximum allowed upload size ( > 2 mb)
 		2. Name file: Dinosaurs secret life<img src=x onerror=alert(1)>.png
@@ -19,15 +19,20 @@ Time spent: **X** hours spent in total
 		4. XSS activated
   - [ ] Affected source code:
     - [Link 1](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-admin/media-new.php
-1. (Required) Vulnerability Name or ID
-  - [ ] Summary: 
-    - Vulnerability types:
-    - Tested in version:
-    - Fixed in version: 
-  - [ ] GIF Walkthrough: 
+1. (Required) 4.9.4 - Application DoS
+  - [ ] Summary: The load-scripts.php is a file that was designed for admins to improve
+  website performance.  WP did not have admin authentication placed so anyone could be able
+  to call load-scripts.  A user could be able to force load-scripts.php and send multiple
+  requests to shutdown the server.
+    - Vulnerability types: Privelege Escalation
+    - Tested in version: 4.2
+    - Fixed in version: Not fixed
+  - [ ] GIF Walkthrough: https://github.com/smr1234/WebApplicationSecurity/blob/master/Week7/ApplicationDoS.gif
   - [ ] Steps to recreate: 
+		1. Navigate to web browser
+		2. Enter the following URL:  http://wpdistillery.vm/wp-admin/load-scripts.php?c=1&load=editor,%20common,%20user-profile,media-widgets,media-gallery
   - [ ] Affected source code:
-    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+    - [Link 1] https://core.trac.wordpress.org/browser/tags/4.2/src/wp-admin/load-scripts.php
 1. (Required) Vulnerability Name or ID
   - [ ] Summary: 
     - Vulnerability types:
@@ -59,6 +64,7 @@ Time spent: **X** hours spent in total
 ## Assets
 
 List any additional assets, such as scripts or files
+
 
 ## Resources
 
