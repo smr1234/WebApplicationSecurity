@@ -13,8 +13,12 @@ Time spent: **X** hours spent in total
     - Fixed in version: 4.2.15
   - [ ] GIF Walkthrough: 
   - [ ] Steps to recreate: 
+		1. Create a file over the maximum allowed upload size ( > 2 mb)
+		2. Name file: Dinosaurs secret life<img src=x onerror=alert(1)>.png
+		3. Drag file into the upload screen
+		4. XSS activated
   - [ ] Affected source code:
-    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/4.2/src/wp-admin/media-new.php
 1. (Required) Vulnerability Name or ID
   - [ ] Summary: 
     - Vulnerability types:
